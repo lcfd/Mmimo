@@ -8,6 +8,13 @@ dependencies = [
     "django-browser-reload>=1.15.0",
     "markdown2[all]>=2.5.0",
     "django-htmx>=1.19.0",
+    "ruff>=0.6.8",
+    "djhtml>=3.0.6",
+    "django-widget-tweaks>=1.5.0",
+    "django-template-partials>=24.4",
+    "django-cotton>=1.1.1",
+    "heroicons[django]>=2.8.0",
+    "rich>=13.9.1",
 ]
 requires-python = "==3.12.*"
 readme = "README.md"

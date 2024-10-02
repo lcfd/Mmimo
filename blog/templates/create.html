@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load widget_tweaks static partials %}
+{% block title %}Create{% endblock title %}
+
+
+{% block topbar %}
+  <c-topbar-editor />
+{% endblock topbar %}
+
+{% partialdef form-partial %}
+  <form id="create-form" hx-post="{% url 'admin-create-post' %}" hx-swap="outerHTML">
+    {% render_field form.title class="bg-body w-full h-10 text-5xl font-bold outline-none" placeholder="Your title" %}
+    <div class="py-12 font-lora">
+      <textarea id="id_markdown" name="markdown" class="hidden"></textarea>
+    </div>
+  </form>
+{% endpartialdef form-partial %}
+
+{% block header %}
+{% endblock header %}
+
+
+{% block content %}
+  <div class="max-w-screen-md mx-auto py-12 px-3 sm:px-0">
+    {% partial form-partial %}
+  </div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block js %}
+  <link rel="stylesheet" href="{% static "easymde.min.css" %}">
+  <style>
+    .CodeMirror {background: transparent; font-size: 20px;}
+    .CodeMirror.cm-s-easymde.CodeMirror-wrap{padding: 0;}
+    .EasyMDEContainer .CodeMirror{border: 0;}
+    .CodeMirror-line{padding: 0;}
+  </style>
+  <script src="{% static "easymde.min.js" %}"></script>
+  <script>
+    function create_editor(content){
+      const editor = new EasyMDE(
+        {
+          element: document.getElementById("id_markdown"),
+          spellChecker: false,
+          autoDownloadFontAwesome: false,
+          toolbar: false,
+          placeholder: "My awesome post..."
+        }
+      );
+      editor.value(content ? content : "");
+    }
+
+    create_editor()
+
+    document.addEventListener('create_editor', function(evt) {
+      create_editor(evt.detail.content);
+    });
+  </script>
+{% endblock js %}

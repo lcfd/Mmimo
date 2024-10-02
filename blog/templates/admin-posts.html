@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load widget_tweaks static partials %}
+{% block title %}Posts{% endblock title %}
+
+
+
+
+{% block header %}
+{% endblock header %}
+
+
+{% block content %}
+  <div class="max-w-screen-md mx-auto py-12 px-3 sm:px-0">
+    {% for post in posts %}
+      <div>
+        {{post.title}}
+      </div>
+    {% empty %}
+      <a href="{% url 'admin-create-post' %}">
+        <div class="bg-baseAlt1 p-12 rounded-lg text-center text-lg">
+          <p>
+            Create your first post!
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block js %}
+{% endblock js %}

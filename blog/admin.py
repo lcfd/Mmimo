@@ -1,3 +1,19 @@
 from django.contrib import admin
 
-# Register your models here.
+from blog.models import Post
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    """Admin View for Post"""
+
+    list_display = ("id", "title", "created_date", "modified_date")
+    ordering = ("created_date",)
+    # list_filter = ('',)
+    # inlines = [
+    #     Inline,
+    # ]
+    # raw_id_fields = ('',)
+    # readonly_fields = ('',)
+    # search_fields = ('',)
+    # date_hierarchy = ''

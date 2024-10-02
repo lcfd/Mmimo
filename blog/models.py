@@ -14,10 +14,12 @@ class Post(BaseModel):
     """Model definition for Post."""
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    slug = models.SlugField(unique=True)
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    markdown = models.TextField()
+    html = models.TextField()
 
-    class Meta:
+    class Meta:  # ignore: type
         """Meta definition for Post."""
 
         verbose_name = "Post"
@@ -25,4 +27,5 @@ class Post(BaseModel):
 
     def __str__(self):
         """Unicode representation of Post."""
-        pass
+
+        return self.title

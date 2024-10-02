@@ -15,5 +15,8 @@ trap cleanup EXIT
 
 python manage.py runserver 0.0.0.0:8000 &
 
-./tailwindcss -i input.css -o output.css --watch
-
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  ./tailwindcss -i input.css -o assets/output.css --watch
+elif [[ $OSTYPE == 'darwin'* ]]; then
+  ./tailwindcss-macos-arm64 -i input.css -o assets/output.css --watch
+fi

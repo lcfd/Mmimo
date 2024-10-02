@@ -24,10 +24,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_browser_reload",
+    "widget_tweaks",
     "django_htmx",
+    "django_cotton.apps.SimpleAppConfig",
+    "template_partials.apps.SimpleAppConfig",
+    "heroicons",
     "blog",
-    "comments",
-    "watchlist",
+    # "comments",
+    # "watchlist",
 ]
 
 MIDDLEWARE = [
@@ -44,17 +48,52 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "core.urls"
 
+# TEMPLATES = [
+#     {
+#         "BACKEND": "django.template.backends.django.DjangoTemplates",
+#         "DIRS": [],
+#         "APP_DIRS": True,
+#         "OPTIONS": {
+#             "context_processors": [
+#                 "django.template.context_processors.debug",
+#                 "django.template.context_processors.request",
+#                 "django.contrib.auth.context_processors.auth",
+#                 "django.contrib.messages.context_processors.messages",
+#             ],
+#         },
+#     },
+# ]
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "DIRS": [BASE_DIR / "templates", BASE_DIR / "blog/templates"],
         "OPTIONS": {
+            "loaders": [
+                (
+                    "template_partials.loader.Loader",
+                    [
+                        (
+                            "django.template.loaders.cached.Loader",
+                            [
+                                "django_cotton.cotton_loader.Loader",
+                                "django.template.loaders.filesystem.Loader",
+                                "django.template.loaders.app_directories.Loader",
+                            ],
+                        )
+                    ],
+                )
+            ],
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+            ],
+            "builtins": [
+                "heroicons.templatetags.heroicons",
+                "django_cotton.templatetags.cotton",
+                "template_partials.templatetags.partials",
             ],
         },
     },
