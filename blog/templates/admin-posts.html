@@ -1,8 +1,6 @@
 {% extends "base.html" %}
-{% load widget_tweaks static partials %}
+{% load widget_tweaks static partials heroicons %}
 {% block title %}Posts{% endblock title %}
-
-
 
 
 {% block header %}
@@ -11,20 +9,67 @@
 
 {% block content %}
   <div class="max-w-screen-md mx-auto py-12 px-3 sm:px-0">
-    {% for post in posts %}
-      <div>
-        {{post.title}}
-      </div>
-    {% empty %}
-      <a href="{% url 'admin-create-post' %}">
-        <div class="bg-baseAlt1 p-12 rounded-lg text-center text-lg">
-          <p>
-            Create your first post!
-          </p>
+    <div>
+      <h1 class="text-4xl font-bold">
+        Your posts
+      </h1>
+    </div>
+    <table class="table-auto mt-12 w-full text-left">
+      <thead>
+        <tr>
+          <th scope="col" class="px-3">Status</th>
+          <th scope="col" class="px-3">Title</th>
+          <th scope="col" class="px-3">Create</th>
+          <th scope="col" class="px-3">Modified</th>
+          <th scope="col" class="px-3">Actions</th>
+        </tr>
+      </thead>
+      {% if posts %}
+        <tbody>
+          {% for post in posts %}
+            <tr class="border-b">
+              <td class="py-4 px-3">
+                {% if post.status == "DR" %}
+                  <span class="bg-baseAlt1 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{post.get_status_display}}</span>
+                {% else %}
+                  <span class="bg-green-600 text-gray-50 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{post.get_status_display}}</span>
+                {% endif %}
+              </td>
+              <td class="py-4 px-3 w-full">{{post.title}}</td>
+              <td class="py-4 px-3">
+                <p class="whitespace-nowrap">
+                  {{post.created_date|date:"d/m/Y H:i"}}
+                </p>
+              </td>
+              <td class="py-4 px-3">
+                <p class="whitespace-nowrap">
+                  {{post.modified_date|date:"d/m/Y H:i"}}
+                </p>
+              </td>
+              <td class="py-4 px-3 space-x-3 flex justify-end">
+                <a class="" href="{% url 'admin-edit-post' post.slug %}">
+                  {% heroicon_outline "pencil" size=22 %}
+                </a>
+                <span class="">
+                  {% heroicon_outline "eye" size=22 %}
+                </span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+      {% else %}
+        <div class="mt-12 ">
+          <a href="{% url 'admin-create-post' %}">
+            <div class="bg-baseAlt1 p-12 rounded-lg text-center text-lg">
+              <p>
+                Create your first post!
+              </p>
+            </div>
+          </a>
         </div>
-      </a>
-    {% endfor %}
-  </div>
+      {% endif %}
+    </div>
 {% endblock content %}
 
 {% block footer %}

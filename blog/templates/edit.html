@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load widget_tweaks static partials %}
-{% block title %}Create{% endblock title %}
+{% block title %}Edit — {{post.title}}{% endblock title %}
 
 
 {% block topbar %}
@@ -8,8 +8,8 @@
 {% endblock topbar %}
 
 {% partialdef form-partial %}
-  <form id="create-form" hx-post="{% url 'admin-create-post' %}" hx-swap="outerHTML">
-    {% render_field form.title class="bg-body w-full h-10 text-5xl font-bold outline-none" placeholder="Your title" %}
+  <form id="post-form" hx-post="{% url 'admin-edit-post' post.slug %}" hx-swap="outerHTML">
+    {% render_field form.title class="bg-body w-full h-13 text-5xl font-bold outline-none" placeholder="Your title" %}
     <div class="py-12 font-lora">
       <textarea id="id_markdown" name="markdown" class="hidden"></textarea>
     </div>
@@ -52,10 +52,15 @@
       editor.value(content ? content : "");
     }
 
-    create_editor()
+    create_editor("{{form.markdown.value|safe|escapejs}}")
 
     document.addEventListener('create_editor', function(evt) {
       create_editor(evt.detail.content);
+
+    });
+
+    document.addEventListener('update_page', function(evt) {
+      window.history.replaceState({}, evt.detail.title, `/_/edit/${evt.detail.slug}`);
     });
   </script>
 {% endblock js %}

@@ -1,0 +1,17 @@
+<c-vars style="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-sm text-sm px-5 py-2.5 me-2 mb-2" />
+
+{% if href %}
+  <a href="{{ href }}" class="{{style}}">
+    {{ text }}
+  </a>
+{% else %}
+  <button
+    {% if type %}
+      type="{{ type }}"
+    {% else %}
+      type="button"
+    {% endif %}
+    class="{{style}}">
+    {{ text }}
+  </button>
+{% endif %}

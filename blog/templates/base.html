@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Mimo{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "output.css" %}">
+    <link rel="stylesheet" href="{% static "notyf.min.css" %}">
     <script src="{% static 'htmx.min.js' %}" defer></script>
     {% django_htmx_script %}
     <style>
@@ -38,6 +39,22 @@
 
     {% block js %}
     {% endblock js %}
+    <script src="{% static 'notyf.min.js' %}"></script>
+    <script>
+      var notyf = new Notyf();
+      document.addEventListener('toast', function(evt) {
+        const toasts = evt.detail.toasts;
+        // console.log(evt.detail.toasts)
+        if(toasts && toasts.length > 0){
+          for (let i = 0; i < toasts.length; i++) {
+            // console.log("here")
+            if(toasts[i].kind === "success"){
+              notyf.success(toasts[i].text);
+            }
+          }
+        }
+      });
+    </script>
   </body>
 
 </html>

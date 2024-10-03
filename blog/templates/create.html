@@ -8,7 +8,7 @@
 {% endblock topbar %}
 
 {% partialdef form-partial %}
-  <form id="create-form" hx-post="{% url 'admin-create-post' %}" hx-swap="outerHTML">
+  <form id="post-form" hx-post="{% url 'admin-create-post' %}" hx-swap="outerHTML">
     {% render_field form.title class="bg-body w-full h-10 text-5xl font-bold outline-none" placeholder="Your title" %}
     <div class="py-12 font-lora">
       <textarea id="id_markdown" name="markdown" class="hidden"></textarea>

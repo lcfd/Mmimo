@@ -7,7 +7,14 @@ from blog.models import Post
 class PostAdmin(admin.ModelAdmin):
     """Admin View for Post"""
 
-    list_display = ("id", "title", "created_date", "modified_date")
+    list_display = (
+        "id",
+        "status",
+        "title",
+        "slug",
+        "created_date",
+        "modified_date",
+    )
     ordering = ("created_date",)
     # list_filter = ('',)
     # inlines = [

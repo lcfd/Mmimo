@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:73b3b97b291301b54e6d632d8709f761d24df638efe09e22d99498a88a4f4900"
+content_hash = "sha256:7b32472a337d67fbdaa7bb776958548d78d4527cca871eb362f467e1cdd18d48"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -223,6 +223,17 @@ groups = ["default"]
 files = [
     {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
     {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
+]
+
+[[package]]
+name = "mistune"
+version = "3.0.2"
+requires_python = ">=3.7"
+summary = "A sane and fast Markdown parser with useful plugins and renderers"
+groups = ["default"]
+files = [
+    {file = "mistune-3.0.2-py3-none-any.whl", hash = "sha256:71481854c30fdbc938963d3605b72501f5c10a9320ecd412c121c163a1c7d205"},
+    {file = "mistune-3.0.2.tar.gz", hash = "sha256:fc7f93ded930c92394ef2cb6f04a8aabab4117a91449e72dcc8dfa646a508be8"},
 ]
 
 [[package]]
