@@ -1,5 +1,9 @@
 from pathlib import Path
 
+MIMO_SITE_NAME = "Viandante"
+MIMO_SITE_TITLE = "Viandante"
+MIMO_SITE_SUBTITLE = "Film, libri e giochi"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -89,6 +93,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "core.urls.mimo_config",
             ],
             "builtins": [
                 "heroicons.templatetags.heroicons",
@@ -135,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "it"
 
 TIME_ZONE = "UTC"
 

@@ -19,15 +19,18 @@ class Post(BaseModel):
         DRAFT = "DR", _("Draft")
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True)
-    title = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True, editable=False)
+    title = models.CharField(max_length=100, unique=True)
+    subtitle = models.CharField(max_length=200, blank=True, null=True)
     markdown = models.TextField()
     html = models.TextField()
+    pub_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(
         max_length=2,
         choices=StatusChoices,
         default=StatusChoices.DRAFT,
     )
+    pinned = models.BooleanField(default=False)
 
     class Meta:  # ignore: type
         """Meta definition for Post."""

@@ -9,9 +9,35 @@
 
 {% partialdef form-partial %}
   <form id="post-form" hx-post="{% url 'admin-create-post' %}" hx-swap="outerHTML">
+    <div class="pb-6 flex space-x-6 items-center">
+      <div>
+        {% render_field form.status class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none" %}
+      </div>
+      <div class="font-bold">
+        •
+      </div>
+      <div>
+        <input
+          id="id_pub_date"
+          name="pub_date" value="{{post.pub_date|date:'Y-m-d H:i'}}"
+          class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none"
+          type="datetime-local"
+        >
+      </div>
+    </div>
     {% render_field form.title class="bg-body w-full h-10 text-5xl font-bold outline-none" placeholder="Your title" %}
+    <div class="text-red-500">
+      {% for error in form.title.errors %}
+        <p>{{ error }}</p>
+      {% endfor %}
+    </div>
     <div class="py-12 font-lora">
       <textarea id="id_markdown" name="markdown" class="hidden"></textarea>
+    </div>
+    <div class="text-red-500">
+      {% for error in form.markdown.errors %}
+        <p>{{ error }}</p>
+      {% endfor %}
     </div>
   </form>
 {% endpartialdef form-partial %}

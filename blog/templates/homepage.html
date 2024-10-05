@@ -1,0 +1,35 @@
+{% extends "base_public.html" %}
+{% load widget_tweaks static partials %}
+{% block title %}{{MIMO_SITE_NAME}}{% endblock title %}
+
+
+{% block header %}
+{% endblock header %}
+
+
+{% block content %}
+  <div class="max-w-screen-md mx-auto mt-12 space-y-14 font-serif">
+    {% for post in posts %}
+      <div>
+        <a class="hover:underline" href="{% url 'view-post-public' post.slug %}">
+          <h3 class="text-3xl">
+            {{post.title}}
+          </h3>
+        </a>
+        <p class="text-gray-500">{{post.pub_date|date:"j F, Y H:i"}}</p>
+        {% if post.subtitle %}
+          <p class="py-4">{{post.subtitle}}</p>
+        {% endif %}
+        <a class="hover:underline inline-block mt-8" href="{% url 'view-post-public' post.slug %}">
+          Leggi di più
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block js %}
+{% endblock js %}

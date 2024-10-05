@@ -8,7 +8,24 @@
 {% endblock topbar %}
 
 {% partialdef form-partial %}
-  <form id="post-form" hx-post="{% url 'admin-edit-post' post.slug %}" hx-swap="outerHTML">
+  <form id="post-form" hx-post="{% url 'admin-edit-post' post.id %}" hx-swap="outerHTML">
+    <div class="pb-6 flex space-x-6 items-center">
+      <div>
+        {% render_field form.status class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none" %}
+      </div>
+      <div class="font-bold">
+        •
+      </div>
+      <div>
+        <input
+          id="id_pub_date"
+          name="pub_date" value="{{post.pub_date|date:'Y-m-d H:i'}}"
+          class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none"
+          type="datetime-local"
+          required
+        >
+      </div>
+    </div>
     {% render_field form.title class="bg-body w-full h-13 text-5xl font-bold outline-none" placeholder="Your title" %}
     <div class="py-12 font-lora">
       <textarea id="id_markdown" name="markdown" class="hidden"></textarea>
@@ -60,7 +77,7 @@
     });
 
     document.addEventListener('update_page', function(evt) {
-      window.history.replaceState({}, evt.detail.title, `/_/edit/${evt.detail.slug}`);
+      window.history.replaceState({}, evt.detail.title);
     });
   </script>
 {% endblock js %}

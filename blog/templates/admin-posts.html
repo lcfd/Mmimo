@@ -19,7 +19,7 @@
         <tr>
           <th scope="col" class="px-3">Status</th>
           <th scope="col" class="px-3">Title</th>
-          <th scope="col" class="px-3">Create</th>
+          <th scope="col" class="px-3">Published</th>
           <th scope="col" class="px-3">Modified</th>
           <th scope="col" class="px-3">Actions</th>
         </tr>
@@ -38,7 +38,7 @@
               <td class="py-4 px-3 w-full">{{post.title}}</td>
               <td class="py-4 px-3">
                 <p class="whitespace-nowrap">
-                  {{post.created_date|date:"d/m/Y H:i"}}
+                  {{post.pub_date|date:"d/m/Y H:i"}}
                 </p>
               </td>
               <td class="py-4 px-3">
@@ -47,7 +47,7 @@
                 </p>
               </td>
               <td class="py-4 px-3 space-x-3 flex justify-end">
-                <a class="" href="{% url 'admin-edit-post' post.slug %}">
+                <a class="" href="{% url 'admin-edit-post' post.id %}">
                   {% heroicon_outline "pencil" size=22 %}
                 </a>
                 <span class="">

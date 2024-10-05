@@ -1,6 +1,6 @@
 {% load heroicons %}
 
-<nav class="flex justify-between px-4 py-3">
+<nav class="flex justify-between px-4 py-3 max-w-screen-xl mx-auto">
   <div class="flex">
     <a href="{% url 'admin-posts' %}" class="font-bold text-gray-800 flex items-center space-x-2">
       {% heroicon_solid "chevron-left" size=16 %}
@@ -8,13 +8,12 @@
         Posts
       </span>
     </a>
-    <p>{{ post_status }}</p>
   </div>
   <div class="flex space-x-4 items-center justify-end">
-    <a class="font-bold text-gray-800 block" href="{% url 'admin-preview-post' 12 %}">Preview</a>
+    <!-- <a class="font-bold text-gray-800 block" href="{% url 'admin-preview-post' 12 %}">Preview</a> -->
     <p class="font-bold text-green-500">
       <button type="submit" form="post-form">
-        Publish
+        Save
       </button>
     </p>
   </div>

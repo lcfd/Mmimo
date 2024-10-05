@@ -1,0 +1,30 @@
+{% load static django_htmx %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Mimo{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static "output.css" %}">
+  </head>
+
+  <body>
+    {% block topbar %}
+      <c-topbar-public />
+    {% endblock topbar %}
+
+    {% block header %}
+    {% endblock header %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %}
+    {% endblock footer %}
+
+    {% block js %}
+    {% endblock js %}
+  </body>
+</html>
+

@@ -28,10 +28,10 @@ module.exports = {
         warning: "#ff944d",
         warningAlt: "#ffd4b8",
       },
-    },
-    fontFamily: {
-      lora: ["Lora Variable"],
+      fontFamily: {
+        lora: ["Lora Variable"],
+      },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

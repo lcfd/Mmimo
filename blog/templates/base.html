@@ -44,12 +44,13 @@
       var notyf = new Notyf();
       document.addEventListener('toast', function(evt) {
         const toasts = evt.detail.toasts;
-        // console.log(evt.detail.toasts)
         if(toasts && toasts.length > 0){
           for (let i = 0; i < toasts.length; i++) {
-            // console.log("here")
             if(toasts[i].kind === "success"){
               notyf.success(toasts[i].text);
+            }
+            if(toasts[i].kind === "error"){
+              notyf.error(toasts[i].text);
             }
           }
         }
