@@ -1,5 +1,5 @@
 import mistune
-from django.forms import ModelForm, DateTimeField
+from django.forms import ModelForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.defaultfilters import slugify
 from django_htmx.http import HttpResponseClientRedirect, trigger_client_event
@@ -12,23 +12,27 @@ def view_homepage(request):
         status=Post.StatusChoices.PUBLISHED,
     ).order_by("-pub_date")[:5]
 
-    return render(request, "homepage.html", {"posts": posts})
+    return render(request, "blog/homepage.html", {"posts": posts})
 
 
 def view_post_public(request, slug):
     post = get_object_or_404(
         Post,
         slug=slug,
-        status=Post.StatusChoices.PUBLISHED,
+        # status=Post.StatusChoices.PUBLISHED,
     )
-    return render(request, "post_public.html", {"post": post})
+    if post.status == Post.StatusChoices.PUBLISHED:
+        return render(request, "blog/post.html", {"post": post})
+
+    if request.user.is_authenticated and post.status == Post.StatusChoices.DRAFT:
+        return render(request, "blog/post.html", {"post": post})
 
 
 def admin_posts(request):
     if request.user.is_superuser:
         posts = Post.objects.filter(user=request.user)
 
-        return render(request, "admin-posts.html", {"posts": posts})
+        return render(request, "admin/posts.html", {"posts": posts})
 
     return redirect("homepage")
 
@@ -52,7 +56,7 @@ def admin_create_post(request):
             new_post.save()
             return HttpResponseClientRedirect(f"/_/edit/{new_post.id}")
         else:
-            response = render(request, "create.html#form-partial", {"form": form})
+            response = render(request, "admin/create.html#form-partial", {"form": form})
             response = trigger_client_event(
                 response,
                 "create_editor",
@@ -72,7 +76,7 @@ def admin_create_post(request):
             )
             return response
 
-    return render(request, "create.html", {"form": form})
+    return render(request, "admin/create.html", {"form": form})
 
 
 def admin_edit_post(request, id):
@@ -89,9 +93,10 @@ def admin_edit_post(request, id):
             except Exception as e:
                 raise e
 
-            template_name = "edit.html#form-partial"
+            template_name = "admin/edit.html#form-partial"
 
             response = render(request, template_name, {"form": form, "post": post})
+
             response = trigger_client_event(
                 response,
                 "create_editor",
@@ -121,7 +126,7 @@ def admin_edit_post(request, id):
 
             return response
         else:
-            template_name = "edit.html#form-partial"
+            template_name = "admin/edit.html#form-partial"
             response = render(request, template_name, {"form": form, "post": post})
             response = trigger_client_event(
                 response,
@@ -144,12 +149,12 @@ def admin_edit_post(request, id):
 
             return response
 
-    return render(request, "edit.html", {"form": form, "post": post})
+    return render(request, "admin/edit.html", {"form": form, "post": post})
 
 
 def admin_delete_post(request):
-    return render(request, "base.html", {})
+    return render(request, "admin/base.html", {})
 
 
 def admin_preview_post(request):
-    return render(request, "base.html", {})
+    return render(request, "admin/base.html", {})

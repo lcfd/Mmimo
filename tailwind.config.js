@@ -29,7 +29,8 @@ module.exports = {
         warningAlt: "#ffd4b8",
       },
       fontFamily: {
-        lora: ["Lora Variable"],
+        lora: ["Lora Variable", "serif"],
+        serif: ["Lora Variable", "serif"],
       },
     },
   },

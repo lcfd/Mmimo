@@ -9,12 +9,13 @@
       </span>
     </a>
   </div>
-  <div class="flex space-x-4 items-center justify-end">
-    <!-- <a class="font-bold text-gray-800 block" href="{% url 'admin-preview-post' 12 %}">Preview</a> -->
-    <p class="font-bold text-green-500">
-      <button type="submit" form="post-form">
-        Save
-      </button>
-    </p>
+  <div class="flex items-center space-x-4 justify-end">
+    <c-button-link
+      id="edit_link_see_post"
+      form="post-form"
+      variant="outline"
+      text="See the post"
+      href="{% url 'view-post-public' post.slug %}"
+    />
   </div>
 </nav>

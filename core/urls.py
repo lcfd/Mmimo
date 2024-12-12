@@ -18,6 +18,7 @@ def mimo_config(request):
         "MIMO_SITE_NAME": settings.MIMO_SITE_NAME,
         "MIMO_SITE_TITLE": settings.MIMO_SITE_TITLE,
         "MIMO_SITE_SUBTITLE": settings.MIMO_SITE_SUBTITLE,
+        "MIMO_AUTHOR": settings.MIMO_AUTHOR,
         "PINNED_POSTS": pinned,
     }
 

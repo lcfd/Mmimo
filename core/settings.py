@@ -3,6 +3,7 @@ from pathlib import Path
 MIMO_SITE_NAME = "Viandante"
 MIMO_SITE_TITLE = "Viandante"
 MIMO_SITE_SUBTITLE = "Film, libri e giochi"
+MIMO_AUTHOR = "Luca Fedrizzi"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,13 +28,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_browser_reload",
     "widget_tweaks",
     "django_htmx",
     "django_cotton.apps.SimpleAppConfig",
     "template_partials.apps.SimpleAppConfig",
     "heroicons",
     "blog",
+    "django_browser_reload",
     # "comments",
     # "watchlist",
 ]

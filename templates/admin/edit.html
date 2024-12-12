@@ -1,30 +1,33 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 {% load widget_tweaks static partials %}
 {% block title %}Edit — {{post.title}}{% endblock title %}
 
 
 {% block topbar %}
-  <c-topbar-editor />
+  <c-admin.t-editor />
 {% endblock topbar %}
 
 {% partialdef form-partial %}
   <form id="post-form" hx-post="{% url 'admin-edit-post' post.id %}" hx-swap="outerHTML">
-    <div class="pb-6 flex space-x-6 items-center">
-      <div>
-        {% render_field form.status class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none" %}
+    <div class="pb-6 flex justify-between items-center">
+      <div class="w-full flex space-x-4 items-center">
+        <div>
+          {% render_field form.status class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none border p-2" %}
+        </div>
+        <div class="font-bold">
+          •
+        </div>
+        <div>
+          <input
+            id="id_pub_date"
+            name="pub_date" value="{{post.pub_date|date:'Y-m-d H:i'}}"
+            class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none border p-2"
+            type="datetime-local"
+            required
+          >
+        </div>
       </div>
-      <div class="font-bold">
-        •
-      </div>
-      <div>
-        <input
-          id="id_pub_date"
-          name="pub_date" value="{{post.pub_date|date:'Y-m-d H:i'}}"
-          class="text-gray-900 bg-body text-sm rounded-lg inline-block outline-none"
-          type="datetime-local"
-          required
-        >
-      </div>
+      <c-button type="submit" form="post-form" text="Save" />
     </div>
     {% render_field form.title class="bg-body w-full h-13 text-5xl font-bold outline-none" placeholder="Your title" %}
     <div class="py-12 font-lora">

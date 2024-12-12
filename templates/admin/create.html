@@ -1,10 +1,9 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 {% load widget_tweaks static partials %}
 {% block title %}Create{% endblock title %}
 
-
 {% block topbar %}
-  <c-topbar-editor />
+  <c-admin.t-editor />
 {% endblock topbar %}
 
 {% partialdef form-partial %}

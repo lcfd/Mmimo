@@ -3,7 +3,7 @@
 <nav class="grid grid-cols-3 font-serif">
   <div class="">
   </div>
-  <div class="pt-12">
+  <div class="pt-24 pb-16">
     <div class="max-w-screen-md mx-auto">
       <p class="text-3xl text-center font-bold">
         {{ MIMO_SITE_TITLE }}
@@ -21,8 +21,8 @@
   </div>
   <div class="w-full h-full flex justify-end py-4">
     {% if user.is_superuser %}
-      <div>
-        <c-button text="Admin" href="{% url 'admin-posts' %}" />
+      <div class="px-3">
+        <c-button-link text="Admin" href="{% url 'admin-posts' %}" class="font-sans" variant="outline" />
       </div>
     {% endif %}
   </div>

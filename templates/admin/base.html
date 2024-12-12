@@ -8,24 +8,14 @@
     <title>{% block title %}Mimo{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "output.css" %}">
     <link rel="stylesheet" href="{% static "notyf.min.css" %}">
-    <script src="{% static 'htmx.min.js' %}" defer></script>
+    <script src="{% static 'htmx.min.js' %}"></script>
     {% django_htmx_script %}
-    <style>
-      /* lora-latin-wght-normal */
-      @font-face {
-        font-family: 'Lora Variable';
-        font-style: normal;
-        font-display: swap;
-        font-weight: 400 700;
-        src: url({% static "lora.woff2" %}) format('woff2-variations');
-        unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
-      }
-    </style>
+    {% include "includes/lora_font.html" %}
   </head>
 
   <body class="bg-body min-h-screen" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% block topbar %}
-      <c-topbar-admin />
+      <c-admin.topbar />
     {% endblock topbar %}
 
     {% block header %}
@@ -39,6 +29,7 @@
 
     {% block js %}
     {% endblock js %}
+
     <script src="{% static 'notyf.min.js' %}"></script>
     <script>
       var notyf = new Notyf();

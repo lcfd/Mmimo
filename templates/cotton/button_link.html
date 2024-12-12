@@ -1,0 +1,23 @@
+<c-vars
+  type="button"
+  variant="normal"
+  color="primary"
+  id=""
+  class=""
+  form=""
+/>
+
+<a
+  id="{{ id }}"
+  href="{{ href }}"
+  class="{{class}}
+         font-medium text-sm px-5 py-2.5 focus:outline-none focus:ring-4
+         {% if color == 'primary' %}
+           {% if variant == 'normal' %}
+             text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300
+           {% elif variant == 'outline' %}
+             text-gray-800 bg-white border border-gray-800 hover:bg-gray-100
+           {% endif %}
+         {% endif %}">
+  {{ text }}
+</a>

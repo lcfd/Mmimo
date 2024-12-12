@@ -1,0 +1,44 @@
+{% extends "blog/base.html" %}
+{% load widget_tweaks static partials %}
+{% block title %}{{MIMO_SITE_NAME}}{% endblock title %}
+
+
+{% block header %}
+  <c-blog.topbar />
+{% endblock header %}
+
+
+{% block content %}
+  <div>
+    <div class="max-w-screen-md mx-auto mt-12 font-serif">
+      <div>
+        <h2 class="text-xl font-bold text-gray-700">Gli ultimi post</h2>
+      </div>
+    </div>
+    <div class="max-w-screen-md mx-auto mt-4 space-y-14 font-serif">
+      {% for post in posts %}
+        <div>
+          <a class="inline-block"
+             href="{% url 'view-post-public' post.slug %}">
+            <h3 class="hover:underline text-3xl font-semibold inline-block">
+              {{post.title}}
+            </h3>
+          </a>
+          <p class="text-gray-500">{{post.pub_date|date:"j F, Y H:i"}}</p>
+          {% if post.subtitle %}
+            <p class="py-4">{{post.subtitle}}</p>
+          {% endif %}
+          <a class="underline hover:text-gray-600 inline-block mt-4"
+             href="{% url 'view-post-public' post.slug %}">
+            Leggi di più
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="max-w-screen-md mx-auto mt-12 font-serif">
+      <div>
+        <a href="" class="text-lg underline text-gray-700">Tutti gli altri</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -27,7 +27,7 @@ class Post(BaseModel):
     pub_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(
         max_length=2,
-        choices=StatusChoices,
+        choices=StatusChoices.choices,
         default=StatusChoices.DRAFT,
     )
     pinned = models.BooleanField(default=False)

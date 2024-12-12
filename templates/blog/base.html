@@ -1,0 +1,43 @@
+{% load static django_htmx %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Mimo{% endblock title %}</title>
+    {% include "includes/lora_font.html" %}
+    <link rel="stylesheet" href="{% static "output.css" %}">
+    <script src="{% static 'alpine.min.js' %}" defer></script>
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    {% block topbar %}
+    {% endblock topbar %}
+
+    {% block header %}
+    {% endblock header %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %}
+      <div class="flex-grow"></div>
+      <footer class="mt-24 py-16 flex justify-center"
+              style="background: white;
+                     background-image: radial-gradient(#242424 1px, transparent 0);
+                     background-size: 16px 16px;
+                     background-repeat: repeat;"
+      >
+        <div class="text-center text-gray-800 inline-block bg-white p-3">
+          <p>{{ MIMO_AUTHOR }} • <span x-data="{today: (new Date()).getFullYear()}" x-text="today"></span></p>
+          <p class="text-xs">Made with <u>mimo</u></p>
+        </div>
+      </footer>
+    {% endblock footer %}
+
+    {% block js %}
+    {% endblock js %}
+  </body>
+</html>
+

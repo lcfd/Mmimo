@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "admin/base.html" %}
 {% load widget_tweaks static partials heroicons %}
 {% block title %}Posts{% endblock title %}
 
@@ -47,12 +47,12 @@
                 </p>
               </td>
               <td class="py-4 px-3 space-x-3 flex justify-end">
-                <a class="" href="{% url 'admin-edit-post' post.id %}">
+                <a class="hover:opacity-70 transition-opacity" href="{% url 'admin-edit-post' post.id %}">
                   {% heroicon_outline "pencil" size=22 %}
                 </a>
-                <span class="">
+                <a class="hover:opacity-70 transition-opacity" href="{% url 'view-post-public' post.slug %}">
                   {% heroicon_outline "eye" size=22 %}
-                </span>
+                </a>
               </td>
             </tr>
           {% endfor %}
